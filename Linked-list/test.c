@@ -1,19 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
-#include "linked_list.h"
+#include "circular_linked_list.h"
 int main(void) {
- Node *values = NULL;
- for(int i = 0; i < 10; i++){
- values = ll_prepend(values, i);
+Node *head = NULL;
+for (int i = 0; i < 10; i++) {
+head = cll_insert(head, i);
   }
- ll_print(values);
-
- assert(ll_find(values, 11) == NULL);
-
-  Node* value_5 = ll_find(values, 5);
-  ll_insert_before(values, value_5, 11);
-  ll_print(values);
-  ll_insert_before(values, value_5, 12);
-  ll_print(values);
-  return 0;
+  cll_print(head);
+  Node *any = cll_find(head, 5);
+  assert(any->data == 5);
+  head = cll_delete(any);
+cll_print(head);
+cll_insert_after(head, 100);
+cll_print(head);
+return 0;
 }
+
+
+  
